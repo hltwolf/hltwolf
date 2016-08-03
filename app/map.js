@@ -1,6 +1,8 @@
 define(function (require) {
   let actors = require('actors/index');
   let actions = require('game-actions');
+  let MapHelper = require('map-helper');
+  let utils = require('app-utils');
 
   class Map {
     constructor(width, height) {
@@ -77,16 +79,10 @@ define(function (require) {
     }
 
     moduloPoint(q, r) {
-      let wrapNumber = (number, min, max) => (number > max)
-        ? min + (number - max)
-        : (number < min)
-          ? max + (number - min)
-          : number;
-
-      let newR = wrapNumber(r, 0, this.height - 1);
+      let newR = utils.numWrap(r, 0, this.height - 1);
       let qRange = this.qRangeForR(newR);
 
-      let newQ = wrapNumber(q, qRange[0], qRange[1]);
+      let newQ = utils.numWrap(q, qRange[0], qRange[1] + 1);
 
       return [newQ, newR];
     }
@@ -122,19 +118,10 @@ define(function (require) {
           this.setPoint(q, r, null);
 
           let move = [0,0];
-          let surroundings = actions.moves.map(offset => {
-            let point = this.moduloOffset([q, r], offset);
-            return this.getPoint(point[0], point[1]);
-          });
 
           try {
-            move = obj.move(surroundings);
-            if(move.constructor !== Array
-              || move.length != 2
-              || !actions.moves.some(vm => vm[0] === move[0] && vm[1] === move[1])) {
-                // Move was invalid.
-                move = [0,0];
-            }
+            move = obj.move(new MapHelper(this, q, r));
+            move = (actions.isValidMove(move)) ? move : [0,0];
           } catch(ex) {
             move = [0,0];
           }

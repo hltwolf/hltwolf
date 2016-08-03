@@ -11,7 +11,7 @@ define(function (require) {
     }
 
     // incapable of moving - it's a tree!
-    move(surroundings) {
+    move(introspectSurroundings) {
       return [0,0];
     }
 
