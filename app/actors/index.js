@@ -8,6 +8,12 @@ define(function (require) {
     ],
     loneWolves: [
 
+    ],
+    alphaWolves: [
+
+    ],
+    cheetahs: [
+
     ]
   };
 });

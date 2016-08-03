@@ -1,3 +1,5 @@
+// TODO: Separate game and map logic
+
 define(function (require) {
   let actors = require('actors/index');
   let actions = require('game-actions');
@@ -146,14 +148,14 @@ define(function (require) {
           let choiceB = 0;
 
           try {
-            choiceA = actions.attacks.indexOf(contenders[0].obj.attack());
+            choiceA = actions.attacks.indexOf(contenders[0].obj.attack(contenders[1]));
             if(choiceA < 1) choiceA = 0;
           } catch(ex) {
             choiceA = 0;
           }
 
           try {
-            choiceB = actions.attacks.indexOf(contenders[1].obj.attack());
+            choiceB = actions.attacks.indexOf(contenders[1].obj.attack(contenders[0]));
             if(choiceB < 1) choiceB = 0;
           } catch(ex) {
             choiceB = 0;

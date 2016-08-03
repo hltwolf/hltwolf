@@ -16,7 +16,7 @@ define(function (require) {
     }
 
     // trees can only really swing back and forth
-    attack() {
+    attack(combatant) {
       return "SWIPE";
     }
   }

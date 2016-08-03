@@ -41,7 +41,7 @@ define(function (require) {
     }
 
     // make it up as you go along
-    attack() {
+    attack(combatant) {
       return _.sample(actions.attacks);
     }
   }

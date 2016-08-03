@@ -30,7 +30,7 @@ define(function (require) {
     }
 
     // wolf is about to lose consciousness
-    attack() {
+    attack(combatant) {
       return "FEINT";
     }
   }

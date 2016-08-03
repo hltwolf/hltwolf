@@ -17,7 +17,7 @@ define(function (require) {
     }
 
     // CHARGE!!!
-    attack() {
+    attack(combatant) {
       return "CHARGE";
     }
   }
