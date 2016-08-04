@@ -1,7 +1,6 @@
 // TODO: Separate game and map logic
 
 define(function (require) {
-  let actors = require('actors/index');
   let actions = require('game-actions');
   let MapHelper = require('map-helper');
   let utils = require('app-utils');
@@ -17,15 +16,13 @@ define(function (require) {
       }
 
       this.walkPoints((q, r) => this.setPoint(q, r, null));
-
-      this.seed(actors.builtins.concat(actors.loneWolves));
     }
 
     draw(display) {
       this.walkPoints((q,r) => {
         let point = Map.pairToROTPair(q, r);
-        let val = (this.getPoint(q, r) || {displayLetter: "", displayLetterColor: "#000", displayBackgroundColor: "#fff"});
-        display.draw(point[0], point[1], val.displayLetter, val.displayLetterColor, val.displayBackgroundColor);
+        let val = (this.getPoint(q, r) || {displayLetter: ""});
+        display.draw(point[0], point[1], val.displayLetter, val.displayLetterColor || "#000", val.displayBackgroundColor || "#fff");
       });
     }
 

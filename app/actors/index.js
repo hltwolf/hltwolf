@@ -7,7 +7,7 @@ define(function (require) {
       require('./hltwolf/sloth'),
     ],
     loneWolves: [
-
+      require('./liamdawson/shady')
     ],
     alphaWolves: [
 

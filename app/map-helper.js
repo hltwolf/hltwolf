@@ -29,7 +29,8 @@ define(function (require) {
 
       this.getAtOffset = point => {
         if(this.isValidOuterMove(point)) {
-          return map.getPoint(map.moduloOffset([q, r], point));
+          let newPoint = map.moduloOffset([q, r], point);
+          return map.getPoint(newPoint[0], newPoint[1]);
         }
         return null;
       }
